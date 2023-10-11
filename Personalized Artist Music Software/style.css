@@ -1,0 +1,294 @@
+/* Google Font 'Poppins'  */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+* {
+    padding: 0%;
+    margin: 0%;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    background-color:#020528;
+    font-family: 'Poppins' , sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top:100px;
+}
+
+header {
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+header .side_menu, .main_content {
+    position: relative;
+    width: 25%;
+    background-color: #111727;
+    box-shadow: 5px 0px 2px #090f1f;
+    color: #fff;
+    padding:20px;
+}
+
+header .main_content {
+    width: 75%;
+    background: #0b1320;
+    padding:30px;
+    padding-left:15px;
+}
+
+/*Playlist, lyrics with icons*/
+header .side_menu h4{
+    color: #4c5262;
+    margin:15px;
+    cursor: pointer;
+}
+
+header .side_menu h4:hover {
+color: red;
+}
+
+.bi-pencil-fill, .bi-music-note-beamed {
+    margin-right:20px;
+}
+
+header .side_nav .active {
+color:#AF5EFF;
+}
+
+header .menu_song img {
+width: 50px;
+height: 50px;
+margin-left: 25px;
+margin-right:10px;
+}
+
+
+header .popular_songs .menu_song li {
+    display:flex;
+    overflow-x:auto;
+}
+
+/* Track List on the site */
+header .side_menu .menu_song li{
+    position: relative;
+    list-style-type: none;
+    padding: 5px 0px 5px 20px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: .3s linear;
+    color: #4c5262;
+}
+
+header .side_menu .menu_song li h5{
+    color: white;
+    margin-right:60px;
+}
+
+header .side_menu .menu_song li i{
+    color: white;
+}
+
+header .menu_song .subtitle {
+    color:#4c5262;
+}
+
+/* NAVGIATIONS  Tabs */
+header .main_content nav ul { 
+    list-style:none;
+    font-weight:bold;
+    display:flex;
+    height:10%;
+    align-items: center;
+    font-size: 20px;
+}
+
+/* NAVGIATIONS Link itself */
+header .main_content nav ul a {
+    text-decoration:none;
+    margin-right:30px;
+    transition:.3s linear;
+    cursor:pointer;
+}
+
+header .main_content nav ul li a:hover {
+    color: #AF5EFF;
+}
+
+/*ARTIST PROFILE*/
+header .main_content h1 {
+    padding-top:15px;
+    padding-bottom:15x;
+    color: #AF5EFF;
+}
+
+header .main_content p {
+    color: #4c5262;
+    font-size:10px;
+}
+
+/* BUTTONS */
+button {
+    margin-left:10px;
+    width:150px;
+    height:45px;
+    border: 2px solid #AF5EFF;
+    outline: none;
+    background-color:#AF5EFF;
+    border-radius: 20px;
+    color: white;
+    transition: .3s linear;
+    cursor: pointer;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+button:hover {
+    background-color: transparent;
+    color: #AF5EFF;
+}
+
+button:nth-child(2), button:nth-child(3) {
+width: 50px;
+height:45px;
+background-color: transparent;
+color: #AF5EFF;
+}
+
+button:nth-child(2):hover, button:nth-child(3):hover {
+    background-color: #AF5EFF;
+    color: white;
+}
+
+header .popular_songs {
+    display:flex;
+}
+
+
+/* Bottom play bar */
+
+header .master_play {
+    position: fixed;
+    bottom:5px;
+    left:450px;
+    width:50%;
+    height:60px;
+    background-color:#AF5EFF;
+    border:2px solid white;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    justify-content: space-between;
+
+}
+
+header .master_play img{
+width:50px;
+height:50px;
+margin-left:10px;
+}
+
+header .master_play .icon {
+font-size:20px;
+}
+
+header .main_content .popular_song {
+    width: 90%;
+    height: auto;
+    /* border: 1px solid #fff; */
+    margin: auto;
+    margin-top: 15px;
+}
+header .main_content .popular_song .h4{
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+header .main_content .popular_song .h4 .bi{
+   color: #a4a8b4;
+   cursor: pointer;
+   transition: .3s linear;
+}
+header .main_content .popular_song .h4 .bi:hover{
+   color: #fff;
+}
+
+header .main_content .popular_song .pop_song {
+    width: 100%;
+    height: 150px;
+    margin-top: 15px;
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+}
+header .main_content .popular_song .pop_song::-webkit-scrollbar{
+    display: none;
+}
+header .main_content .popular_song .pop_song li{
+    min-width: 100px;
+    height: 140px;
+    list-style-type: none;
+    margin-right: 10px;
+    transition: .3s linear;
+}
+header .main_content .popular_song .pop_song li:hover{
+    background: rgb(105, 105, 170,.1);
+}
+header .main_content .popular_song .pop_song li .img_play{
+   position: relative;
+   width: 120px;
+   height: 120px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+header .main_content .popular_song .pop_song li .img_play img{
+  width: 100%;
+  height: 100%;
+  padding:3px;
+}
+header .main_content .popular_song .pop_song li .img_play .bi{
+  position: absolute;
+  font-size: 24px;
+  cursor: pointer;
+  transition: .3s linear;
+  opacity: 0;
+}
+header .main_content .popular_song .pop_song li .img_play:hover .bi{
+  opacity: 1;
+}
+header .main_content .popular_song .pop_song li h5{
+  padding: 5px 0px 0px 10px;
+  padding-bottom:10px;
+  line-height: 15px;
+  font-size: 10px;
+}
+header .main_content .popular_song .pop_song li h5 .subtitle{
+  font-size: 9px;
+  color: #4c5262;
+}
+
+header .albumcontainer {
+    padding-left: 20px;
+    border:2px solid white
+}
+
+header .albumcontainer .albums {
+    display:flex;
+}
+
+.img2 {
+    width:205px;
+    height:205px;
+    margin-left:-20px;
+    margin-right:30px;
+    margin-top:10px;
+}
+
+
+
