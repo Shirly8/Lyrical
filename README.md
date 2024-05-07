@@ -3,7 +3,9 @@ Tunetell is a revolutionary music streaming app that goes beyond just listening 
 
 ## Demonstration:  ![Alt text]()
 ![Alt text](https://github.com/Shirly8/TuneTeller/blob/43a2d910aa4e9463140b98f1826f26e886bd7b59/main.png)
-![Alt text](https://github.com/Shirly8/TuneTeller/blob/43a2d910aa4e9463140b98f1826f26e886bd7b59/popup.png)
+
+![Alt text]
+(https://github.com/Shirly8/TuneTeller/blob/43a2d910aa4e9463140b98f1826f26e886bd7b59/popup.png)
 
 
 ## 🌟 WHAT MAKES TUNETELL UNIQUE? 
