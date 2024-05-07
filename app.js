@@ -1,5 +1,53 @@
 const music = new Audio('1.mp3');
 
+var lyrics1 = `Someone said that we were never soulmate <br>
+That's why they call it heartbreak <br>
+So this dance is the last date <br>
+And that one kiss feels amazing <br>
+And my one wish is your loving <br>
+But I know you couldn't give it <br>
+And you leave without a reason <br>
+So it leaves me feeling beaten <br><br>
+
+You know what it means when you said you ain't my friend <br>
+And I know that it's true but I end up in dead end <br><br>
+
+You said you wanna go now then baby come on <br>
+I thought you was so good til you show this song <br>
+And if you really love me, then why we're you gone <br>
+Cuz I know you miss me, it took you this long <br><br>
+
+How did I leave you <br>
+How did I leave you <br>
+How did I leave you <br>
+La la la day <br><br>
+
+How did I leave you<br>
+How did I leave you<br>
+How did I leave you<br>
+La la la day<br>
+`;
+
+
+
+
+var songMeaning1 = 
+`<b><ul>Best Wishes</b></ul> <br> <br> I was initially inspired by Love Rosie, especially the wedding scene. 
+Its truly heartbreaking but bittersweet for Rosie confess to someone she loves knowing he was getting married to someone else.
+But in the end, they end up together. 
+This song is not that.
+This song is not about unrequited love.  <br> <br>
+
+<i><b>Best Wishes</i></b> captures all the memory and emotions one feels in a snapshot of a single event - being at a wedding where she’s not the bride. 
+In the beginning, there might be jealousy and regret lingering in the beginning. 
+She’s wearing the same dress when they were together to the wedding <i>(My dress is satin gold). </i> She sprayed his favorite perfume <i>(My hair is scented rose)</i>. 
+Does she still want him back? <br> <br>
+
+However it is already revealed through imagery that he proposed to her before and she rejected him, thus maybe she didn’t want to marry him then, but does that mean she wants to marry him now? <br> <br>
+
+Towards the end, there’s a significant emotional shift. She didn’t want to marry him now either. The song is about letting go, accepting the lost but continuing to heal and hope. So maybe its more of a tragic melancholic Love Rosie. <br><br>
+<p style="color:red;">-Shirly</p>
+`;
 
 // create Array 
 
@@ -8,7 +56,10 @@ const songs = [
         id:'1',
         songName:` Come On... (ft.Torin) <br>
         <div class="subtitle">Come on</div>`,
-        poster: "img/1.jpg"
+        poster: "img/1.jpg",
+        lyrics: lyrics1,
+        songMeaning: songMeaning1
+
     },
     {
           id:'2',
@@ -60,7 +111,8 @@ const songs = [
         id:'10',
         songName:`best wishes <br>
         <div class="subtitle">alice in love</div>`,
-        poster: "img/A.jpg"
+        poster: "img/A.jpg",
+        songMeaning: songMeaning1
     }, 
 
     {
@@ -95,8 +147,8 @@ const songs = [
     },
     {
         id:'10',
-        songName:` hands low <br>
-        <div class="subtitle">3AM</div>`,
+        songName:` early morning talking <br>
+        <div class="subtitle">alice in love</div>`,
         poster: "img/AA.jpg"
     },
     {
@@ -188,6 +240,31 @@ masterPlay.addEventListener('click',()=>{
      }
 } )
 
+//POPUP FOR LYRICS
+document.getElementById('lyricsButton').addEventListener('click', function() {
+    let currentSong = songs[0];
+    let popup = document.getElementById('popup');
+    let lyricsContainer = document.getElementById('lyricsContainer');
+    popup.style.display = 'block';
+    popup.style.backgroundColor = 'DarkPurple';
+    popup.style.color = 'white';
+    lyricsContainer.innerHTML = currentSong.lyrics;
+});
+
+
+
+//POPUP FOR LYRICS
+document.getElementById('songsButton').addEventListener('click', function() {
+    let currentSong = songs[0];
+    let popup = document.getElementById('popup');
+    let lyricsContainer = document.getElementById('lyricsContainer');
+    popup.style.display = 'block';
+    popup.style.backgroundColor = 'DarkPurple';
+    popup.style.color = 'red';
+    lyricsContainer.innerHTML = currentSong.songMeaning;
+});
+
+
 let playy = document.getElementById('playy');
 
 playy.addEventListener('click', ()=> {
@@ -278,6 +355,11 @@ music.addEventListener('ended', ()=>{
     masterPlay.classList.add('bi-play-fill');
     masterPlay.classList.remove('bi-pause-fill');
 })
+
+document.getElementById('exitButton').addEventListener('click', function() {
+    let popup = document.getElementById('popup');
+    popup.style.display = 'none';
+});
 
 
 let vol_icon = document.getElementById('vol_icon');

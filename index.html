@@ -12,14 +12,26 @@
 
 <body>
 <header>
+
+    <!--POP-UP BUTTON!!!-->
+    <div id="popup" style="display: none; position: fixed; width: 100%; height: 100%; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0,0,0,0.8); z-index: 2; cursor: pointer;">
+        <div style="margin-left:25%;background-color: DarkPurple; color: white; border-radius: 10px; width: 50%; padding: 20px; position: relative; display: flex; justify-content: center; align-items: center; text-align: center; border: 2px solid #AF5EFF">
+            <!-- Exit button -->
+            <button id="exitButton" style="position: absolute; right: 10px; top: 10px; background: none; border: none; font-size: 20px; color: white;">×</button>
+            <div id="lyricsContainer"></div>
+        </div>
+    </div>
     
+    
+
+ 
     <div class = "side_menu">
         <h1 style = "color: white; padding-bottom:20px">SHIRLY</h1>
         
         <div class = "side_nav">
             <h4 class="active"><span></span><i class="bi-music-note-beamed"></i> Playlist</h4>
-            <h4 ><span></span><i class="bi-pencil-fill"></i> Lyrics</h4>
-            <h4 ><span></span><i style = "margin-right:15px" class="bi-lightbulb-fill"></i> About this song</h4>
+            <h4 id = "lyricsButton"><span></span><i class="bi-pencil-fill"></i> Lyrics</h4>
+            <h4 id = "songsButton"><span></span><i style = "margin-right:15px" class="bi-lightbulb-fill"></i> About this song</h4>
         </div>
         <div class = "menu_song" style = "margin-top:30px">
             <h3 style = "margin-bottom:20px; text-align: center; text-decoration: underline;"> Most Played Songs:</h3>
@@ -95,7 +107,7 @@
                     </nav>
                     <div class = "artistprofile" style = "padding:30px;">
                         <h1> SHIRLY</h1>
-                        <p>Welcome to my music account...</p>
+                        <p>I like to write about true human experiences.</p>
                     </div>
 
                 <div class="buttons">
@@ -107,7 +119,7 @@
 
             <div class="popular_song">
                 <div class="h4">
-                    <h4 style = "font-size: 20px">A romantic but she gave it up... this is <i>alice in love</i></h4>
+                    <h4 style = "font-size: 20px">A romantic but she gave it up... this is <i>Alice In Love</i></h4>
                     <div class="btn_s">
                         <i id="left_scroll" class="bi bi-arrow-left-short" style = "font-size:30px"></i>
                         <i id="right_scroll" class="bi bi-arrow-right-short" style = "font-size:30px"></i>
@@ -116,12 +128,12 @@
                 <div class="pop_song">
                     <li class="songItem">
                         <div class="img_play">
-                            <img src="img/1.jpg" alt="alan">
-                            <i class="bi playListPlay bi-play-circle-fill" id="8"></i>
+                            <img src="img/8.jpg" alt="alan">
+                            <i class="bi playListPlay bi-play-circle-fill" id="7"></i>
                         </div>
-                        <h5>lonely
+                        <h5>
                             <br>
-                            <div class="subtitle">pearl</div>
+                            <div class="subtitle"></div>
                         </h5>
                     </li>
                     <li class="songItem">
