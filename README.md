@@ -1,7 +1,7 @@
 # 🎵 Lyrical: The Next Level of Music Streaming and Lyrics 🎵
 Lyrical is a revolutionary music streaming app that goes beyond just listening to music. It goes as far as to tell about the story, the inspiration, and the meaning behind every lyric, every song
 
-## Demonstration: [https://youtu.be/1BF4lTGST3I](https://www.youtube.com/watch?v=1BF4lTGST3I)
+## Demonstration: https://youtu.be/1BF4lTGST3I?si=KHtZUTnKgRslM77Z
 ![Alt text](https://github.com/Shirly8/Lyrical/blob/43a2d910aa4e9463140b98f1826f26e886bd7b59/main.png)
 
 ![Alt text](https://github.com/Shirly8/Lyrical/blob/43a2d910aa4e9463140b98f1826f26e886bd7b59/popup.png)
