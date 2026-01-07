@@ -327,6 +327,11 @@ header .albumcontainer .albums {
     margin-top:10px;
 }
 
+/* Hide mobile player buttons on desktop */
+.mobile-player-buttons {
+    display: none;
+}
+
 /* Hamburger Menu Styles */
 .hamburger {
     display: none;
@@ -337,19 +342,19 @@ header .albumcontainer .albums {
     background-color: #AF5EFF;
     border: none;
     border-radius: 5px;
-    width: 45px;
-    height: 45px;
+    width: 38px;
+    height: 38px;
     cursor: pointer;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5px;
-    padding: 10px;
+    gap: 4px;
+    padding: 8px;
 }
 
 .hamburger span {
-    width: 25px;
-    height: 3px;
+    width: 20px;
+    height: 2.5px;
     background-color: white;
     transition: 0.3s;
     border-radius: 2px;
@@ -430,7 +435,37 @@ header .albumcontainer .albums {
     }
 
     header .side_menu .menu_song li {
-        padding: 8px 0px 8px 15px;
+        padding: 5px 0px 5px 10px;
+        margin-bottom: 5px;
+    }
+
+    header .side_menu .menu_song img {
+        width: 35px;
+        height: 35px;
+        margin-left: 15px;
+        margin-right: 8px;
+    }
+
+    header .side_menu .menu_song li h5 {
+        font-size: 11px;
+    }
+
+    header .side_menu .menu_song li .subtitle {
+        font-size: 9px;
+    }
+
+    header .side_menu .menu_song li span {
+        font-size: 10px;
+    }
+
+    header .side_menu .menu_song li i {
+        font-size: 14px;
+    }
+
+    /* Hide Lyrics and About buttons in sidebar on mobile */
+    header .side_menu #lyricsButton,
+    header .side_menu #songsButton {
+        display: none;
     }
 
     /* Main Content */
@@ -578,6 +613,42 @@ header .albumcontainer .albums {
         display: none;
     }
 
+    /* Hide end duration on mobile */
+    header .master_play #currentEnd {
+        display: none;
+    }
+
+    /* Mobile player buttons - hidden by default, shown only on mobile */
+    .mobile-player-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        align-items: center;
+    }
+
+    .mobile-player-buttons button {
+        width: 50px;
+        height: 20px;
+        min-width: unset;
+        border-radius: 3px;
+        background-color: white;
+        border: 1px solid white;
+        color: #AF5EFF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        margin: 0;
+        flex-shrink: 0;
+        font-size: 9px;
+        font-weight: 600;
+    }
+
+    .mobile-player-buttons button:hover {
+        background-color: #AF5EFF;
+        color: white;
+    }
+
     /* Popup Styles for Mobile */
     #popup > div {
         margin-left: 5% !important;
@@ -587,7 +658,7 @@ header .albumcontainer .albums {
     }
 
     #exitButton {
-        right: 20px !important;
+        right: 10px !important;
         top: 10px !important;
         font-size: 32px !important;
     }

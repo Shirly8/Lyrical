@@ -215,7 +215,7 @@ masterPlay.addEventListener('click',()=>{
      }
 } )
 
-//POPUP FOR LYRICS
+//POPUP FOR LYRICS (Desktop sidebar button)
 document.getElementById('lyricsButton').addEventListener('click', async function() {
     let popup = document.getElementById('popup');
     let lyricsContainer = document.getElementById('lyricsContainer');
@@ -232,10 +232,42 @@ document.getElementById('lyricsButton').addEventListener('click', async function
     }
 });
 
+//POPUP FOR LYRICS (Mobile player button)
+document.getElementById('lyricsButtonMobile').addEventListener('click', async function() {
+    let popup = document.getElementById('popup');
+    let lyricsContainer = document.getElementById('lyricsContainer');
+    popup.style.display = 'block';
+    popup.style.backgroundColor = 'DarkPurple';
+    popup.style.color = 'white';
 
+    // Load lyrics from file based on current song index
+    const lyricsText = await loadTextFile(`lyrics/${currentSongIndex}.txt`);
+    if (lyricsText) {
+        lyricsContainer.innerHTML = lyricsText;
+    } else {
+        lyricsContainer.innerHTML = 'Lyrics not available for this song.';
+    }
+});
 
-//POPUP FOR SONG MEANING
+//POPUP FOR SONG MEANING (Desktop sidebar button)
 document.getElementById('songsButton').addEventListener('click', async function() {
+    let popup = document.getElementById('popup');
+    let lyricsContainer = document.getElementById('lyricsContainer');
+    popup.style.display = 'block';
+    popup.style.backgroundColor = 'DarkPurple';
+    popup.style.color = 'white';
+
+    // Load song meaning from file based on current song index
+    const meaningText = await loadTextFile(`Meanings/${currentSongIndex}.txt`);
+    if (meaningText) {
+        lyricsContainer.innerHTML = meaningText;
+    } else {
+        lyricsContainer.innerHTML = 'Song meaning not available for this song.';
+    }
+});
+
+//POPUP FOR SONG MEANING (Mobile player button)
+document.getElementById('songsButtonMobile').addEventListener('click', async function() {
     let popup = document.getElementById('popup');
     let lyricsContainer = document.getElementById('lyricsContainer');
     popup.style.display = 'block';
