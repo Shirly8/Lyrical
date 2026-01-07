@@ -563,14 +563,9 @@ header .albumcontainer .albums {
         min-width: 80px;
     }
 
+    /* Hide volume controls on mobile */
     header .master_play .vol {
-        display: flex;
-        align-items: center;
-        gap: 3px;
-    }
-
-    header .master_play .vol input {
-        width: 50px;
+        display: none;
     }
 
     /* Popup Styles for Mobile */
@@ -650,9 +645,7 @@ header .albumcontainer .albums {
         min-width: 60px;
     }
 
-    header .master_play .vol input {
-        width: 40px;
-    }
+    /* Volume controls already hidden in 768px breakpoint */
 }
 
 
