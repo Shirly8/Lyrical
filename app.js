@@ -158,7 +158,7 @@ const songs = [
         songName:`TRIPPING ON ACID <br>
         <div class="subtitle">3AM</div>`,
         poster: "img/3Am.jpg",
-        audioFile: "17 - Tripping on Acid.mp3"
+        audioFile: "17 - Tripping on Acid.mp3.mp3"
     },
     {
         id:'19',
@@ -338,6 +338,11 @@ music.addEventListener('timeupdate',()=>{
     let music_curr = music.currentTime;
     let music_dur = music.duration;
 
+    // Check if duration is valid
+    if (isNaN(music_dur) || music_dur === 0) {
+        return;
+    }
+
     let min = Math.floor(music_dur/60);
     let sec = Math.floor(music_dur%60);
     if (sec<10) {
@@ -364,16 +369,20 @@ music.addEventListener('timeupdate',()=>{
 
 // Use 'input' event for real-time seeking while dragging
 seek.addEventListener('input', ()=>{
-    music.currentTime = seek.value * music.duration/100;
-    // Update visual bar while dragging
-    let seekbar = seek.value;
-    bar2.style.width = `${seekbar}%`;
-    dot.style.left = `${seekbar}%`;
+    if (!isNaN(music.duration) && music.duration > 0) {
+        music.currentTime = seek.value * music.duration/100;
+        // Update visual bar while dragging
+        let seekbar = seek.value;
+        bar2.style.width = `${seekbar}%`;
+        dot.style.left = `${seekbar}%`;
+    }
 })
 
 // Also support 'change' event for clicking directly on the bar
 seek.addEventListener('change', ()=>{
-    music.currentTime = seek.value * music.duration/100;
+    if (!isNaN(music.duration) && music.duration > 0) {
+        music.currentTime = seek.value * music.duration/100;
+    }
 })
 
 music.addEventListener('ended', ()=>{
