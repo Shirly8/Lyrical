@@ -1,7 +1,7 @@
-const music = new Audio('audio/1 - Come On.mp3');
+const music = new Audio('audio/come-on.mp3');
 
-// Track currently playing song index
-let currentSongIndex = 1;
+// Track currently playing song slug (name-based identifier)
+let currentSongSlug = 'come-on';
 
 // Function to load text file
 async function loadTextFile(filepath) {
@@ -17,185 +17,70 @@ async function loadTextFile(filepath) {
     return '';
 }
 
-// create Array
-
-const songs = [
-    // Antisocial Social Club songs (First letter uppercase)
-    {
-        id:'1',
-        songName:`Come on <br>
-        <div class="subtitle">Antisocial Social Club ft. Torin!</div>`,
+// Collections-based song structure
+const collections = {
+    "antisocial-social-club": {
+        name: "Antisocial Social Club",
         poster: "img/AntiSocialClub.jpg",
-        audioFile: "1 - Come On.mp3"
+        songs: [
+            { slug: "come-on", title: "Come on", subtitle: "Antisocial Social Club ft. Torin!", audioFile: "come-on.mp3" },
+            { slug: "volcano", title: "Volcano", subtitle: "Antisocial Social Club", audioFile: "volcano.mp3" },
+            { slug: "night-shift", title: "Night Shift", subtitle: "Antisocial Social Club", audioFile: "night-shift.mp3" },
+            { slug: "stargazing", title: "Stargazing", subtitle: "Antisocial Social Club", audioFile: "stargazing.mp3" },
+            { slug: "surfin", title: "Surfin", subtitle: "Antisocial Social Club", audioFile: "surfin.mp3" },
+            { slug: "sunbeam", title: "Sunbeam", subtitle: "Antisocial Social Club", audioFile: "sunbeam.mp3" },
+            { slug: "broken-heart", title: "Broken Heart", subtitle: "Antisocial Social Club", audioFile: "broken-heart.mp3" },
+            { slug: "iris-city", title: "Iris City", subtitle: "Antisocial Social Club", audioFile: "iris-city.mp3" },
+            { slug: "high-speed-chasing", title: "High speed Chasing", subtitle: "Antisocial Social Club", audioFile: "high-speed-chasing.mp3" }
+        ]
     },
-    {
-        id:'2',
-        songName:`Volcano <br>
-        <div class="subtitle">Antisocial Social Club</div>`,
-        poster: "img/AntiSocialClub.jpg",
-        audioFile: "2 - Volcano.mp3"
-    },
-    {
-        id:"3",
-        songName: `Night Shift <br><div class="subtitle">Antisocial Social Club</div>`,
-        poster: "img/AntiSocialClub.jpg",
-        audioFile: "6 - Night Shift.mp3"
-    },
-    {
-        id:"4",
-        songName: `Stargazing <br><div class="subtitle">Antisocial Social Club</div>`,
-        poster: "img/AntiSocialClub.jpg",
-        audioFile: "5 - Stargazing .mp3"
-    },
-    {
-        id:'5',
-        songName:`Surfin <br>
-        <div class="subtitle">Antisocial Social Club</div>`,
-        poster: "img/AntiSocialClub.jpg",
-        audioFile: "3 - Surfin.mp3"
-    },
-    {
-        id:"6",
-        songName: `Sunbeam <br><div class="subtitle">Antisocial Social Club</div>`,
-        poster: "img/AntiSocialClub.jpg",
-        audioFile: "22 - Sunbeam.mp3"
-    },
-    {
-        id:'7',
-        songName:`Broken Heart <br>
-        <div class="subtitle">Antisocial Social Club</div>`,
-        poster: "img/AntiSocialClub.jpg",
-        audioFile: "4 - Broken Heart.mp3"
-    },
-    {
-        id:'8',
-        songName:`Iris City <br>
-        <div class="subtitle">Antisocial Social Club</div>`,
-        poster: "img/AntiSocialClub.jpg",
-        audioFile: "28 - Iris City.mp3"
-    },
-    {
-        id:'9',
-        songName:`High speed Chasing <br>
-        <div class="subtitle">Antisocial Social Club</div>`,
-        poster: "img/AntiSocialClub.jpg",
-        audioFile: "26 - High Speed Chasing.mp3"
-    },
-
-    // Alice in Love songs (all lowercase)
-    {
-        id:'10',
-        songName:`love you forever <br>
-        <div class="subtitle">alice in love</div>`,
+    "alice-in-love": {
+        name: "alice in love",
         poster: "img/Alice in Love.jpg",
-        audioFile: "9 - Love you forever.mp3"
+        songs: [
+            { slug: "love-you-forever", title: "love you forever", subtitle: "alice in love", audioFile: "love-you-forever.mp3" },
+            { slug: "early-morning-talking", title: "early morning talking", subtitle: "alice in love", audioFile: "early-morning-talking.mp3" },
+            { slug: "best-wishes", title: "best wishes", subtitle: "alice in love", audioFile: "best-wishes.mp3" },
+            { slug: "cherry-blossom", title: "cherry blossom", subtitle: "alice in love", audioFile: "cherry-blossom.mp3" },
+            { slug: "blade-runner", title: "blade runner", subtitle: "alice in love", audioFile: "blade-runner.mp3" },
+            { slug: "wes-street", title: "wes street", subtitle: "alice in love", audioFile: "wes-street.mp3" },
+            { slug: "can-you", title: "can you", subtitle: "alice in love", audioFile: "can-you.mp3" },
+            { slug: "cool-girls", title: "cool girls", subtitle: "alice in love", audioFile: "cool-girls.mp3" },
+            { slug: "alice-in-love", title: "alice in love", subtitle: "alice in love", audioFile: "alice-in-love.mp3" },
+            { slug: "honey-boy", title: "honey boy", subtitle: "alice in love", audioFile: "honey-boy.mp3" }
+        ]
     },
-    {
-        id:'11',
-        songName:`early morning talking <br>
-        <div class="subtitle">alice in love</div>`,
-        poster: "img/Alice in Love.jpg",
-        audioFile: "10 - Early Morning Talking.mp3"
-    },
-    {
-        id:'12',
-        songName:`best wishes <br>
-        <div class="subtitle">alice in love</div>`,
-        poster: "img/Alice in Love.jpg",
-        audioFile: "11 - Best Wishes.mp3"
-    },
-    {
-        id:'13',
-        songName:`cherry blossom <br>
-        <div class="subtitle">alice in love</div>`,
-        poster: "img/Alice in Love.jpg",
-        audioFile: "23 - Cherry Blossom.mp3"
-    },
-    {
-        id:"14",
-        songName: `blade runner <br><div class="subtitle">alice in love</div>`,
-        poster: "img/Alice in Love.jpg",
-        audioFile: "13 - Blade Runner.mp3"
-    },
-    {
-        id:"15",
-        songName: `wes street <br><div class="subtitle">alice in love</div>`,
-        poster: "img/Alice in Love.jpg",
-        audioFile: "24 - Wes Street.mp3"
-    },
-    {
-        id:'16',
-        songName:`can you <br>
-        <div class="subtitle">alice in love</div>`,
-        poster: "img/Alice in Love.jpg",
-        audioFile: "12 - Can you.mp3"
-    },
-    {
-        id:'24',
-        songName:`cool girls <br>
-        <div class="subtitle">alice in love</div>`,
-        poster: "img/Alice in Love.jpg",
-        audioFile: "7 - Cool Girls.mp3"
-    },
-    {
-        id:'25',
-        songName:`alice in love <br>
-        <div class="subtitle">alice in love</div>`,
-        poster: "img/Alice in Love.jpg",
-        audioFile: "8 - Alice in Love.mp3"
-    },
-
-    // 3AM songs (ALL UPPERCASE)
-    {
-        id:'17',
-        songName:`LONELY <br>
-        <div class="subtitle">3AM</div>`,
+    "3am": {
+        name: "3AM",
         poster: "img/3Am.jpg",
-        audioFile: "27 - Lonely.mp3"
-    },
-    {
-        id:'18',
-        songName:`TRIPPING ON ACID <br>
-        <div class="subtitle">3AM</div>`,
-        poster: "img/3Am.jpg",
-        audioFile: "17 - Tripping on Acid.mp3"
-    },
-    {
-        id:'19',
-        songName:`NOT COMING HOME <br>
-        <div class="subtitle">3AM</div>`,
-        poster: "img/3Am.jpg",
-        audioFile: "14 - Not Coming Home.mp3"
-    },
-    {
-        id:'20',
-        songName:`HANDS LOW <br>
-        <div class="subtitle">3AM</div>`,
-        poster: "img/3Am.jpg",
-        audioFile: "18 - Hands Low.mp3"
-    },
-    {
-        id:'21',
-        songName:`LAST WORDS <br>
-        <div class="subtitle">3AM</div>`,
-        poster: "img/3Am.jpg",
-        audioFile: "21 - Last Words.mp3"
-    },
-    {
-        id:'22',
-        songName:`MISSING GIRL <br>
-        <div class="subtitle">3AM</div>`,
-        poster: "img/3Am.jpg",
-        audioFile: "19 - Missing Girl.mp3"
-    },
-    {
-        id:'23',
-        songName:`OZONE <br>
-        <div class="subtitle">3AM [Chase Atlantic]</div>`,
-        poster: "img/3Am.jpg",
-        audioFile: "25 - Ozone.mp3"
+        songs: [
+            { slug: "lonely", title: "LONELY", subtitle: "3AM", audioFile: "lonely.mp3" },
+            { slug: "tripping-on-acid", title: "TRIPPING ON ACID", subtitle: "3AM", audioFile: "tripping-on-acid.mp3" },
+            { slug: "not-coming-home", title: "NOT COMING HOME", subtitle: "3AM", audioFile: "not-coming-home.mp3" },
+            { slug: "hands-low", title: "HANDS LOW", subtitle: "3AM", audioFile: "hands-low.mp3" },
+            { slug: "last-words", title: "LAST WORDS", subtitle: "3AM", audioFile: "last-words.mp3" },
+            { slug: "missing-girl", title: "MISSING GIRL", subtitle: "3AM", audioFile: "missing-girl.mp3" },
+            { slug: "ozone", title: "OZONE", subtitle: "3AM [Chase Atlantic]", audioFile: "ozone.mp3" },
+            { slug: "i-know", title: "I KNOW", subtitle: "3AM", audioFile: "i-know.mp3" }
+        ]
     }
-]
+};
+
+// Flatten songs into a single array for backwards compatibility with existing code
+const songs = [];
+let songId = 1;
+for (const [collectionSlug, collection] of Object.entries(collections)) {
+    for (const song of collection.songs) {
+        songs.push({
+            id: String(songId++),
+            slug: song.slug,
+            songName: `${song.title} <br><div class="subtitle">${song.subtitle}</div>`,
+            poster: collection.poster,
+            audioFile: song.audioFile,
+            collection: collectionSlug
+        });
+    }
+}
 
 // Don't auto-populate - let HTML control what's displayed
 // The songs array is just for looking up info by ID
@@ -223,8 +108,8 @@ document.getElementById('lyricsButton').addEventListener('click', async function
     popup.style.backgroundColor = 'DarkPurple';
     popup.style.color = 'white';
 
-    // Load lyrics from file based on current song index
-    const lyricsText = await loadTextFile(`lyrics/${currentSongIndex}.txt`);
+    // Load lyrics from file based on current song slug
+    const lyricsText = await loadTextFile(`lyrics/${currentSongSlug}.txt`);
     if (lyricsText) {
         lyricsContainer.innerHTML = lyricsText;
     } else {
@@ -240,8 +125,8 @@ document.getElementById('lyricsButtonMobile').addEventListener('click', async fu
     popup.style.backgroundColor = 'DarkPurple';
     popup.style.color = 'white';
 
-    // Load lyrics from file based on current song index
-    const lyricsText = await loadTextFile(`lyrics/${currentSongIndex}.txt`);
+    // Load lyrics from file based on current song slug
+    const lyricsText = await loadTextFile(`lyrics/${currentSongSlug}.txt`);
     if (lyricsText) {
         lyricsContainer.innerHTML = lyricsText;
     } else {
@@ -257,8 +142,8 @@ document.getElementById('songsButton').addEventListener('click', async function(
     popup.style.backgroundColor = 'DarkPurple';
     popup.style.color = 'white';
 
-    // Load song meaning from file based on current song index
-    const meaningText = await loadTextFile(`Meanings/${currentSongIndex}.txt`);
+    // Load song meaning from file based on current song slug
+    const meaningText = await loadTextFile(`Meanings/${currentSongSlug}.txt`);
     if (meaningText) {
         lyricsContainer.innerHTML = meaningText;
     } else {
@@ -274,8 +159,8 @@ document.getElementById('songsButtonMobile').addEventListener('click', async fun
     popup.style.backgroundColor = 'DarkPurple';
     popup.style.color = 'white';
 
-    // Load song meaning from file based on current song index
-    const meaningText = await loadTextFile(`Meanings/${currentSongIndex}.txt`);
+    // Load song meaning from file based on current song slug
+    const meaningText = await loadTextFile(`Meanings/${currentSongSlug}.txt`);
     if (meaningText) {
         lyricsContainer.innerHTML = meaningText;
     } else {
@@ -309,7 +194,6 @@ let title = document.getElementById('title');
 Array.from(document.getElementsByClassName('playListPlay')).forEach((element)=>{
     element.addEventListener('click', (e)=>{
         index = e.target.id;
-        currentSongIndex = index; // Update current song index for lyrics/meanings
         makeAllPlays();
         e.target.classList.remove('bi-play-circle-fill');
         e.target.classList.add('bi-pause-circle-fill');
@@ -320,7 +204,8 @@ Array.from(document.getElementsByClassName('playListPlay')).forEach((element)=>{
         })
 
         if (song_info.length > 0) {
-            let {songName, poster, audioFile} = song_info[0];
+            let {songName, poster, audioFile, slug} = song_info[0];
+            currentSongSlug = slug; // Update current song slug for lyrics/meanings
             music.src = `audio/${audioFile}`;
             poster_master_play.src = poster;
             title.innerHTML = songName;
@@ -424,7 +309,6 @@ music.addEventListener('ended', ()=>{
     if (index > Array.from(document.getElementsByClassName('songItem')).length) {
         index = 1;
     }
-    currentSongIndex = index;
 
     // Get the song info including audio file
     let song_info = songs.filter((ele)=>{
@@ -432,7 +316,8 @@ music.addEventListener('ended', ()=>{
     })
 
     if (song_info.length > 0) {
-        let {songName, poster, audioFile} = song_info[0];
+        let {songName, poster, audioFile, slug} = song_info[0];
+        currentSongSlug = slug; // Update current song slug for lyrics/meanings
         music.src = `audio/${audioFile}`;
         poster_master_play.src = poster;
         title.innerHTML = songName;
@@ -510,7 +395,6 @@ back.addEventListener('click', ()=>{
     if (index < 1) {
         index = Array.from(document.getElementsByClassName('songItem')).length;
     }
-    currentSongIndex = index; // Update current song index for lyrics/meanings
 
     // Get the song info including audio file
     let song_info = songs.filter((ele)=>{
@@ -518,7 +402,8 @@ back.addEventListener('click', ()=>{
     })
 
     if (song_info.length > 0) {
-        let {songName, poster, audioFile} = song_info[0];
+        let {songName, poster, audioFile, slug} = song_info[0];
+        currentSongSlug = slug; // Update current song slug for lyrics/meanings
         music.src = `audio/${audioFile}`;
         poster_master_play.src = poster;
         title.innerHTML = songName;
@@ -539,7 +424,6 @@ next.addEventListener('click', ()=>{
     if (index > Array.from(document.getElementsByClassName('songItem')).length) {
         index = 1;
         }
-    currentSongIndex = index; // Update current song index for lyrics/meanings
 
     // Get the song info including audio file
     let song_info = songs.filter((ele)=>{
@@ -547,7 +431,8 @@ next.addEventListener('click', ()=>{
     })
 
     if (song_info.length > 0) {
-        let {songName, poster, audioFile} = song_info[0];
+        let {songName, poster, audioFile, slug} = song_info[0];
+        currentSongSlug = slug; // Update current song slug for lyrics/meanings
         music.src = `audio/${audioFile}`;
         poster_master_play.src = poster;
         title.innerHTML = songName;
@@ -691,3 +576,105 @@ menuSongItems.forEach(item => {
         }
     });
 });
+
+// Dynamically populate collection sections
+function populateCollections() {
+    // Alice In Love collection
+    const aliceInLoveContainer = document.getElementById('pop_song_1');
+    const aliceInLoveSongs = collections['alice-in-love'].songs;
+    const aliceInLovePoster = collections['alice-in-love'].poster;
+
+    aliceInLoveSongs.forEach((song, index) => {
+        const songItem = songs.find(s => s.slug === song.slug);
+        aliceInLoveContainer.innerHTML += `
+            <li class="songItem">
+                <div class="img_play">
+                    <img src="${aliceInLovePoster}" alt="alice">
+                    <i class="bi playListPlay bi-play-circle-fill" id="${songItem.id}"></i>
+                </div>
+                <h5>${song.title}
+                    <br>
+                    <div class="subtitle">${song.subtitle}</div>
+                </h5>
+            </li>
+        `;
+    });
+
+    // 3AM collection
+    const threAmContainer = document.getElementById('pop_song_2');
+    const threAmSongs = collections['3am'].songs;
+    const threAmPoster = collections['3am'].poster;
+
+    threAmSongs.forEach((song, index) => {
+        const songItem = songs.find(s => s.slug === song.slug);
+        threAmContainer.innerHTML += `
+            <li class="songItem">
+                <div class="img_play">
+                    <img src="${threAmPoster}" alt="3am">
+                    <i class="bi playListPlay bi-play-circle-fill" id="${songItem.id}"></i>
+                </div>
+                <h5>${song.title}
+                    <br>
+                    <div class="subtitle">${song.subtitle}</div>
+                </h5>
+            </li>
+        `;
+    });
+
+    // Antisocial Social Club collection
+    const antisocialContainer = document.getElementById('pop_song_3');
+    const antisocialSongs = collections['antisocial-social-club'].songs;
+    const antisocialPoster = collections['antisocial-social-club'].poster;
+
+    antisocialSongs.forEach((song, index) => {
+        const songItem = songs.find(s => s.slug === song.slug);
+        antisocialContainer.innerHTML += `
+            <li class="songItem">
+                <div class="img_play">
+                    <img src="${antisocialPoster}" alt="antisocial">
+                    <i class="bi playListPlay bi-play-circle-fill" id="${songItem.id}"></i>
+                </div>
+                <h5>${song.title}
+                    <br>
+                    <div class="subtitle">${song.subtitle}</div>
+                </h5>
+            </li>
+        `;
+    });
+
+    // Re-attach event listeners to the newly created play buttons
+    Array.from(document.getElementsByClassName('playListPlay')).forEach((element)=>{
+        element.addEventListener('click', (e)=>{
+            index = e.target.id;
+            makeAllPlays();
+            e.target.classList.remove('bi-play-circle-fill');
+            e.target.classList.add('bi-pause-circle-fill');
+
+            // Get the song info including audio file
+            let song_info = songs.filter((ele)=>{
+                return ele.id == index;
+            })
+
+            if (song_info.length > 0) {
+                let {songName, poster, audioFile, slug} = song_info[0];
+                currentSongSlug = slug; // Update current song slug for lyrics/meanings
+                music.src = `audio/${audioFile}`;
+                poster_master_play.src = poster;
+                title.innerHTML = songName;
+            }
+
+            music.play();
+            masterPlay.classList.remove('bi-play-fill');
+            masterPlay.classList.add('bi-pause-fill');
+            music.addEventListener('ended',()=>{
+                masterPlay.classList.add('bi-play-fill');
+                masterPlay.classList.remove('bi-pause-fill');
+            })
+            makeAllBackgrounds();
+            Array.from(document.getElementsByClassName('songItem'))[`${index-1}`].style.background = "rgb(105, 105, 170, .1)";
+        })
+    })
+}
+
+// Populate collections when page loads
+populateCollections();
