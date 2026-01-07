@@ -584,3 +584,34 @@ document.getElementById('aboutTab').addEventListener('click', function() {
     document.getElementById('musicTab').style.color = '';
     document.getElementById('musicTab').style.borderBottom = '';
 });
+
+// Hamburger Menu Toggle for Mobile
+const hamburger = document.getElementById('hamburger');
+const sideMenu = document.querySelector('.side_menu');
+
+hamburger.addEventListener('click', function() {
+    hamburger.classList.toggle('active');
+    sideMenu.classList.toggle('active');
+});
+
+// Close sidebar when clicking outside on mobile
+document.addEventListener('click', function(event) {
+    const isClickInsideMenu = sideMenu.contains(event.target);
+    const isClickOnHamburger = hamburger.contains(event.target);
+
+    if (!isClickInsideMenu && !isClickOnHamburger && sideMenu.classList.contains('active')) {
+        hamburger.classList.remove('active');
+        sideMenu.classList.remove('active');
+    }
+});
+
+// Close sidebar when clicking on a song in the menu (mobile)
+const menuSongItems = document.querySelectorAll('.side_menu .menu_song li');
+menuSongItems.forEach(item => {
+    item.addEventListener('click', function() {
+        if (window.innerWidth <= 768) {
+            hamburger.classList.remove('active');
+            sideMenu.classList.remove('active');
+        }
+    });
+});
