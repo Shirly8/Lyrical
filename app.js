@@ -401,6 +401,13 @@ let vol = document.getElementById('vol');
 let vol_dot = document.getElementById('vol_dot');
 let vol_bar = document.getElementsByClassName('vol_bar')[0];
 
+// Set volume to 100% on page load
+music.volume = 1.0;
+vol.value = 100;
+vol_bar.style.width = '100%';
+vol_dot.style.left = '100%';
+vol_icon.classList.add('bi-volume-up-fill');
+
 vol.addEventListener('change', ()=>{
     if (vol.value == 0) {
         vol_icon.classList.remove('bi-volume-down-fill');

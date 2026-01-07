@@ -506,8 +506,18 @@ header .albumcontainer .albums {
         width: 100%;
     }
 
+    header .main_content .popular_song .h4 {
+        gap: 10px;
+    }
+
     header .main_content .popular_song .h4 h4 {
         font-size: 16px !important;
+        flex: 1;
+        max-width: calc(100% - 80px);
+    }
+
+    header .main_content .popular_song .h4 .btn_s {
+        flex-shrink: 0;
     }
 
     header .main_content .popular_song .pop_song {
@@ -594,6 +604,7 @@ header .albumcontainer .albums {
 
     header .main_content .popular_song .h4 h4 {
         font-size: 14px !important;
+        max-width: calc(100% - 70px);
     }
 
     header .main_content .popular_song .pop_song li {
