@@ -158,7 +158,7 @@ const songs = [
         songName:`TRIPPING ON ACID <br>
         <div class="subtitle">3AM</div>`,
         poster: "img/3Am.jpg",
-        audioFile: "17 - Tripping on Acid.mp3.mp3"
+        audioFile: "17 - Tripping on Acid.mp3"
     },
     {
         id:'19',
@@ -418,8 +418,45 @@ seek.addEventListener('change', ()=>{
 })
 
 music.addEventListener('ended', ()=>{
-    masterPlay.classList.add('bi-play-fill');
-    masterPlay.classList.remove('bi-pause-fill');
+    // Auto-advance to next song
+    index -= 0;
+    index += 1;
+    if (index > Array.from(document.getElementsByClassName('songItem')).length) {
+        index = 1;
+    }
+    currentSongIndex = index;
+
+    // Get the song info including audio file
+    let song_info = songs.filter((ele)=>{
+        return ele.id == index;
+    })
+
+    if (song_info.length > 0) {
+        let {songName, poster, audioFile} = song_info[0];
+        music.src = `audio/${audioFile}`;
+        poster_master_play.src = poster;
+        title.innerHTML = songName;
+
+        // Auto-play the next song
+        music.play();
+        masterPlay.classList.remove('bi-play-fill');
+        masterPlay.classList.add('bi-pause-fill');
+    }
+
+    makeAllPlays();
+
+    // Update the UI to show current playing song
+    let currentPlayButton = document.getElementById(`${index}`);
+    if (currentPlayButton) {
+        currentPlayButton.classList.remove('bi-play-circle-fill');
+        currentPlayButton.classList.add('bi-pause-circle-fill');
+    }
+
+    makeAllBackgrounds();
+    let songItems = Array.from(document.getElementsByClassName('songItem'));
+    if (songItems[index-1]) {
+        songItems[index-1].style.background = "rgb(105, 105, 170, .1)";
+    }
 })
 
 document.getElementById('exitButton').addEventListener('click', function() {
