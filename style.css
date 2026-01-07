@@ -8,13 +8,14 @@
 
 body {
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background-color:#020528;
     font-family: 'Poppins' , sans-serif;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    padding-top:100px;
+    padding-top: 20px;
+    padding-bottom: 100px;
 }
 
 header {
@@ -22,6 +23,7 @@ header {
     display: flex;
     flex-wrap: wrap;
     overflow: hidden;
+    padding-bottom: 120px;
 }
 
 header .side_menu, .main_content {
@@ -85,13 +87,25 @@ header .side_menu .menu_song li{
     color: #4c5262;
 }
 
+header .side_menu .menu_song li:hover {
+    background: rgb(105, 105, 170, .1);
+}
+
 header .side_menu .menu_song li h5{
     color: white;
-    margin-right:60px;
+    margin-right: auto;
+    flex: 1;
 }
 
 header .side_menu .menu_song li i{
     color: white;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+header .side_menu .menu_song li i:hover{
+    color: #AF5EFF;
+    transform: scale(1.1);
 }
 
 header .menu_song .subtitle {
@@ -99,7 +113,7 @@ header .menu_song .subtitle {
 }
 
 /* NAVGIATIONS  Tabs */
-header .main_content nav ul { 
+header .main_content nav ul {
     list-style:none;
     font-weight:bold;
     display:flex;
@@ -109,15 +123,26 @@ header .main_content nav ul {
 }
 
 /* NAVGIATIONS Link itself */
+header .main_content nav ul li {
+    list-style: none;
+}
+
 header .main_content nav ul a {
     text-decoration:none;
     margin-right:30px;
     transition:.3s linear;
     cursor:pointer;
+    color: #4c5262;
 }
 
-header .main_content nav ul li a:hover {
+header .main_content nav ul a:hover {
     color: #AF5EFF;
+}
+
+/* Banner should always be visible */
+header .main_content .banner {
+    position: relative;
+    z-index: 1;
 }
 
 /*ARTIST PROFILE*/
@@ -174,23 +199,35 @@ header .popular_songs {
 
 header .master_play {
     position: fixed;
-    bottom:5px;
-    left:450px;
-    width:50%;
-    height:60px;
-    background-color:#AF5EFF;
-    border:2px solid white;
-    display:flex;
-    align-items:center;
-    justify-content: center;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+    min-width: 900px;
+    height: 70px;
+    background-color: #AF5EFF;
+    border: 2px solid white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
     justify-content: space-between;
-
+    padding: 0 15px;
+    gap: 5px;
 }
 
-header .master_play img{
-width:50px;
-height:50px;
-margin-left:10px;
+header .master_play img {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    flex-shrink: 0;
+}
+
+header .master_play h5 {
+    flex: 0 0 auto;
+    min-width: 100px;
+    max-width: 130px;
+    margin: 0 8px 0 8px;
+    font-size: 13px;
 }
 
 header .master_play .icon {

@@ -1,229 +1,204 @@
-const music = new Audio('1.mp3');
+const music = new Audio('audio/1 - Come On.mp3');
 
-var lyrics1 = `Someone said that we were never soulmate <br>
-That's why they call it heartbreak <br>
-So this dance is the last date <br>
-And that one kiss feels amazing <br>
-And my one wish is your loving <br>
-But I know you couldn't give it <br>
-And you leave without a reason <br>
-So it leaves me feeling beaten <br><br>
+// Track currently playing song index
+let currentSongIndex = 1;
 
-You know what it means when you said you ain't my friend <br>
-And I know that it's true but I end up in dead end <br><br>
+// Function to load text file
+async function loadTextFile(filepath) {
+    try {
+        const response = await fetch(filepath);
+        if (response.ok) {
+            const text = await response.text();
+            return text.trim().replace(/\n/g, '<br>');
+        }
+    } catch (error) {
+        console.log(`Could not load ${filepath}`);
+    }
+    return '';
+}
 
-You said you wanna go now then baby come on <br>
-I thought you was so good til you show this song <br>
-And if you really love me, then why we're you gone <br>
-Cuz I know you miss me, it took you this long <br><br>
-
-How did I leave you <br>
-How did I leave you <br>
-How did I leave you <br>
-La la la day <br><br>
-
-How did I leave you<br>
-How did I leave you<br>
-How did I leave you<br>
-La la la day<br>
-`;
-
-
-
-
-var songMeaning1 = 
-`<b><ul>Best Wishes</b></ul> <br> <br> I was initially inspired by Love Rosie, especially the wedding scene. 
-Its truly heartbreaking but bittersweet for Rosie confess to someone she loves knowing he was getting married to someone else.
-But in the end, they end up together. 
-This song is not that.
-This song is not about unrequited love.  <br> <br>
-
-<i><b>Best Wishes</i></b> captures all the memory and emotions one feels in a snapshot of a single event - being at a wedding where she’s not the bride. 
-In the beginning, there might be jealousy and regret lingering in the beginning. 
-She’s wearing the same dress when they were together to the wedding <i>(My dress is satin gold). </i> She sprayed his favorite perfume <i>(My hair is scented rose)</i>. 
-Does she still want him back? <br> <br>
-
-However it is already revealed through imagery that he proposed to her before and she rejected him, thus maybe she didn’t want to marry him then, but does that mean she wants to marry him now? <br> <br>
-
-Towards the end, there’s a significant emotional shift. She didn’t want to marry him now either. The song is about letting go, accepting the lost but continuing to heal and hope. So maybe its more of a tragic melancholic Love Rosie. <br><br>
-<p style="color:red;">-Shirly</p>
-`;
-
-// create Array 
+// create Array
 
 const songs = [
-    { 
+    // Antisocial Social Club songs (First letter uppercase)
+    {
         id:'1',
-        songName:` Come On... (ft.Torin) <br>
-        <div class="subtitle">Come on</div>`,
-        poster: "img/1.jpg",
-        lyrics: lyrics1,
-        songMeaning: songMeaning1
-
+        songName:`Come on <br>
+        <div class="subtitle">Antisocial Social Club ft. Torin!</div>`,
+        poster: "img/AntiSocialClub.jpg",
+        audioFile: "1 - Come On.mp3"
     },
     {
-          id:'2',
-        songName:`VOLCANO <br>
-        <div class="subtitle">ANTI SOCIAL SOCIAL CLUB</div>`,
-        poster: "img/2.jpg"
+        id:'2',
+        songName:`Volcano <br>
+        <div class="subtitle">Antisocial Social Club</div>`,
+        poster: "img/AntiSocialClub.jpg",
+        audioFile: "2 - Volcano.mp3"
     },
-    // all object type 
     {
         id:"3",
-        songName: `SURFIN <br><div class="subtitle"> ANTI SOCIAL SOCIAL CLUB</div>`,
-        poster: "img/2.jpg",
+        songName: `Night Shift <br><div class="subtitle">Antisocial Social Club</div>`,
+        poster: "img/AntiSocialClub.jpg",
+        audioFile: "6 - Night Shift.mp3"
     },
     {
         id:"4",
-        songName: `broken hearts <br><div class="subtitle">broken hears</div>`,
-        poster: "img/4.jpg",
+        songName: `Stargazing <br><div class="subtitle">Antisocial Social Club</div>`,
+        poster: "img/AntiSocialClub.jpg",
+        audioFile: "5 - Stargazing .mp3"
     },
     {
         id:'5',
-        songName:` STARGAZING <br>
-        <div class="subtitle">ANTI SOCIAL SOCIAL CLUB</div>`,
-        poster: "img/2.jpg"
+        songName:`Surfin <br>
+        <div class="subtitle">Antisocial Social Club</div>`,
+        poster: "img/AntiSocialClub.jpg",
+        audioFile: "3 - Surfin.mp3"
     },
     {
         id:"6",
-        songName: `NIGHT SHIFT <br><div class="subtitle">ANTI SOCIAL SOCIAL CLUB</div>`,
-        poster: "img/2.jpg",
+        songName: `Sunbeam <br><div class="subtitle">Antisocial Social Club</div>`,
+        poster: "img/AntiSocialClub.jpg",
+        audioFile: "22 - Sunbeam.mp3"
     },
     {
         id:'7',
-        songName:` cool girls <br>
-        <div class="subtitle">alice in love</div>`,
-        poster: "img/A.jpg"
+        songName:`Broken Heart <br>
+        <div class="subtitle">Antisocial Social Club</div>`,
+        poster: "img/AntiSocialClub.jpg",
+        audioFile: "4 - Broken Heart.mp3"
     },
     {
         id:'8',
-        songName:` love you forever <br>
-        <div class="subtitle">alice in love</div>`,
-        poster: "img/A.jpg"
+        songName:`Iris City <br>
+        <div class="subtitle">Antisocial Social Club</div>`,
+        poster: "img/AntiSocialClub.jpg",
+        audioFile: "28 - Iris City.mp3"
     },
     {
         id:'9',
-        songName:` early morning talks <br>
-        <div class="subtitle">alice in love</div>`,
-        poster: "img/A.jpg"
+        songName:`High speed Chasing <br>
+        <div class="subtitle">Antisocial Social Club</div>`,
+        poster: "img/AntiSocialClub.jpg",
+        audioFile: "26 - High Speed Chasing.mp3"
     },
+
+    // Alice in Love songs (all lowercase)
     {
         id:'10',
-        songName:`best wishes <br>
+        songName:`love you forever <br>
         <div class="subtitle">alice in love</div>`,
-        poster: "img/A.jpg",
-        songMeaning: songMeaning1
-    }, 
-
+        poster: "img/Alice in Love.jpg",
+        audioFile: "9 - Love you forever.mp3"
+    },
+    {
+        id:'11',
+        songName:`early morning talking <br>
+        <div class="subtitle">alice in love</div>`,
+        poster: "img/Alice in Love.jpg",
+        audioFile: "10 - Early Morning Talking.mp3"
+    },
     {
         id:'12',
-        songName:` can you? <br>
+        songName:`best wishes <br>
         <div class="subtitle">alice in love</div>`,
-        poster: "img/A.jpg"
+        poster: "img/Alice in Love.jpg",
+        audioFile: "11 - Best Wishes.mp3"
     },
     {
         id:'13',
-        songName:` blade runner<br>
+        songName:`cherry blossom <br>
         <div class="subtitle">alice in love</div>`,
-        poster: "img/A.jpg"
+        poster: "img/Alice in Love.jpg",
+        audioFile: "23 - Cherry Blossom.mp3"
     },
-
     {
         id:"14",
-        songName: `other side <br><div class="subtitle">3AM</div>`,
-        poster: "img/AA.jpg",
+        songName: `blade runner <br><div class="subtitle">alice in love</div>`,
+        poster: "img/Alice in Love.jpg",
+        audioFile: "13 - Blade Runner.mp3"
     },
-
     {
         id:"15",
-        songName: `lonely <br><div class="subtitle">3AM</div>`,
-        poster: "img/AA.jpg",
+        songName: `wes street <br><div class="subtitle">alice in love</div>`,
+        poster: "img/Alice in Love.jpg",
+        audioFile: "24 - Wes Street.mp3"
     },
     {
         id:'16',
-        songName:` high speed chasing <br>
-        <div class="subtitle"> 3AM </div>`,
-        poster: "img/AA.jpg"
-    },
-    {
-        id:'10',
-        songName:` early morning talking <br>
+        songName:`can you <br>
         <div class="subtitle">alice in love</div>`,
-        poster: "img/AA.jpg"
+        poster: "img/Alice in Love.jpg",
+        audioFile: "12 - Can you.mp3"
     },
     {
-        id:'20',
-        songName:` tripping on acid <br>
-        <div class="subtitle">3AM</div>`,
-        poster: "img/AA.jpg"
+        id:'24',
+        songName:`cool girls <br>
+        <div class="subtitle">alice in love</div>`,
+        poster: "img/Alice in Love.jpg",
+        audioFile: "7 - Cool Girls.mp3"
     },
     {
-        id:'20',
-        songName:` missing girl <br>
-        <div class="subtitle">3AM</div>`,
-        poster: "img/AA.jpg"
+        id:'25',
+        songName:`alice in love <br>
+        <div class="subtitle">alice in love</div>`,
+        poster: "img/Alice in Love.jpg",
+        audioFile: "8 - Alice in Love.mp3"
     },
-    {
-        id:'20',
-        songName:` last words <br>
-        <div class="subtitle">3AM</div>`,
-        poster: "img/AA.jpg"
-    },
-    {
-        id:'21',
-        songName:` COMING HOME <br>
-        <div class="subtitle">ANTISOCIAL SOCIAL CLUB</div>`,
-        poster: "img/AA.jpg"
-    },    
-    {
-        id:'21',
-        songName:` COMING HOME <br>
-        <div class="subtitle">ANTISOCIAL SOCIAL CLUB</div>`,
-        poster: "img/2.jpg"
-    },    
-    {
-        id:'21',
-        songName:` COMING HOME <br>
-        <div class="subtitle">ANTISOCIAL SOCIAL CLUB</div>`,
-        poster: "img/2.jpg"
-    },    
-    {
-        id:'21',
-        songName:` COMING HOME <br>
-        <div class="subtitle">ANTISOCIAL SOCIAL CLUB</div>`,
-        poster: "img/2.jpg"
-    },    
-    {
-        id:'21',
-        songName:` COMING HOME <br>
-        <div class="subtitle">ANTISOCIAL SOCIAL CLUB</div>`,
-        poster: "img/2.jpg"
-    },    
-    {
-        id:'21',
-        songName:` COMING HOME <br>
-        <div class="subtitle">ANTISOCIAL SOCIAL CLUB</div>`,
-        poster: "img/2.jpg"
-    },    
-    {
-        id:'21',
-        songName:` COMING HOME <br>
-        <div class="subtitle">ANTISOCIAL SOCIAL CLUB</div>`,
-        poster: "img/2.jpg"
-    },    
-    {
-        id:'11',
-        songName:` best wishes <br>
-        <div class="subtitle">alce in love</div>`,
-        poster: "img/3.jpg"
-    }
 
+    // 3AM songs (ALL UPPERCASE)
+    {
+        id:'17',
+        songName:`LONELY <br>
+        <div class="subtitle">3AM</div>`,
+        poster: "img/3Am.jpg",
+        audioFile: "27 - Lonely.mp3"
+    },
+    {
+        id:'18',
+        songName:`TRIPPING ON ACID <br>
+        <div class="subtitle">3AM</div>`,
+        poster: "img/3Am.jpg",
+        audioFile: "17 - Tripping on Acid.mp3"
+    },
+    {
+        id:'19',
+        songName:`NOT COMING HOME <br>
+        <div class="subtitle">3AM</div>`,
+        poster: "img/3Am.jpg",
+        audioFile: "14 - Not Coming Home.mp3"
+    },
+    {
+        id:'20',
+        songName:`HANDS LOW <br>
+        <div class="subtitle">3AM</div>`,
+        poster: "img/3Am.jpg",
+        audioFile: "18 - Hands Low.mp3"
+    },
+    {
+        id:'21',
+        songName:`LAST WORDS <br>
+        <div class="subtitle">3AM</div>`,
+        poster: "img/3Am.jpg",
+        audioFile: "21 - Last Words.mp3"
+    },
+    {
+        id:'22',
+        songName:`MISSING GIRL <br>
+        <div class="subtitle">3AM</div>`,
+        poster: "img/3Am.jpg",
+        audioFile: "19 - Missing Girl.mp3"
+    },
+    {
+        id:'23',
+        songName:`OZONE <br>
+        <div class="subtitle">3AM [Chase Atlantic]</div>`,
+        poster: "img/3Am.jpg",
+        audioFile: "25 - Ozone.mp3"
+    }
 ]
 
-Array.from(document.getElementsByClassName('songItem')).forEach((element, i)=>{
-    element.getElementsByTagName('img')[0].src = songs[i].poster;
-    element.getElementsByTagName('h5')[0].innerHTML = songs[i].songName;
-})
+// Don't auto-populate - let HTML control what's displayed
+// The songs array is just for looking up info by ID
 
 
 let masterPlay = document.getElementById('masterPlay');
@@ -241,27 +216,39 @@ masterPlay.addEventListener('click',()=>{
 } )
 
 //POPUP FOR LYRICS
-document.getElementById('lyricsButton').addEventListener('click', function() {
-    let currentSong = songs[0];
+document.getElementById('lyricsButton').addEventListener('click', async function() {
     let popup = document.getElementById('popup');
     let lyricsContainer = document.getElementById('lyricsContainer');
     popup.style.display = 'block';
     popup.style.backgroundColor = 'DarkPurple';
     popup.style.color = 'white';
-    lyricsContainer.innerHTML = currentSong.lyrics;
+
+    // Load lyrics from file based on current song index
+    const lyricsText = await loadTextFile(`lyrics/${currentSongIndex}.txt`);
+    if (lyricsText) {
+        lyricsContainer.innerHTML = lyricsText;
+    } else {
+        lyricsContainer.innerHTML = 'Lyrics not available for this song.';
+    }
 });
 
 
 
-//POPUP FOR LYRICS
-document.getElementById('songsButton').addEventListener('click', function() {
-    let currentSong = songs[0];
+//POPUP FOR SONG MEANING
+document.getElementById('songsButton').addEventListener('click', async function() {
     let popup = document.getElementById('popup');
     let lyricsContainer = document.getElementById('lyricsContainer');
     popup.style.display = 'block';
     popup.style.backgroundColor = 'DarkPurple';
-    popup.style.color = 'red';
-    lyricsContainer.innerHTML = currentSong.songMeaning;
+    popup.style.color = 'white';
+
+    // Load song meaning from file based on current song index
+    const meaningText = await loadTextFile(`Meanings/${currentSongIndex}.txt`);
+    if (meaningText) {
+        lyricsContainer.innerHTML = meaningText;
+    } else {
+        lyricsContainer.innerHTML = 'Song meaning not available for this song.';
+    }
 });
 
 
@@ -290,20 +277,24 @@ let title = document.getElementById('title');
 Array.from(document.getElementsByClassName('playListPlay')).forEach((element)=>{
     element.addEventListener('click', (e)=>{
         index = e.target.id;
+        currentSongIndex = index; // Update current song index for lyrics/meanings
         makeAllPlays();
         e.target.classList.remove('bi-play-circle-fill');
         e.target.classList.add('bi-pause-circle-fill');
-        music.src = `audio/${index}.mp3`;
-        poster_master_play.src =`img/${index}.jpg`;
-        music.play();
-        let song_title = songs.filter((ele)=>{
+
+        // Get the song info including audio file
+        let song_info = songs.filter((ele)=>{
             return ele.id == index;
         })
 
-        song_title.forEach(ele =>{
-            let {songName} = ele;
+        if (song_info.length > 0) {
+            let {songName, poster, audioFile} = song_info[0];
+            music.src = `audio/${audioFile}`;
+            poster_master_play.src = poster;
             title.innerHTML = songName;
-        })
+        }
+
+        music.play();
         masterPlay.classList.remove('bi-play-fill');
         masterPlay.classList.add('bi-pause-fill');
         music.addEventListener('ended',()=>{
@@ -321,6 +312,27 @@ let currentEnd = document.getElementById('currentEnd');
 let seek = document.getElementById('seek');
 let bar2 = document.getElementById('bar2');
 let dot = document.getElementsByClassName('dot')[0];
+
+// Track if user is currently seeking
+let isSeeking = false;
+
+// Prevent progress bar updates while dragging
+seek.addEventListener('mousedown', ()=>{
+    isSeeking = true;
+})
+
+seek.addEventListener('mouseup', ()=>{
+    isSeeking = false;
+})
+
+// Also handle touch events for mobile
+seek.addEventListener('touchstart', ()=>{
+    isSeeking = true;
+})
+
+seek.addEventListener('touchend', ()=>{
+    isSeeking = false;
+})
 
 music.addEventListener('timeupdate',()=>{
     let music_curr = music.currentTime;
@@ -340,13 +352,26 @@ music.addEventListener('timeupdate',()=>{
     }
     currentStart.innerText = `${min1}:${sec1}`;
 
-    let progressbar = parseInt((music.currentTime/music.duration)*100);
-    seek.value = progressbar;
+    // Only update progress bar if user is not currently seeking
+    if (!isSeeking) {
+        let progressbar = parseInt((music.currentTime/music.duration)*100);
+        seek.value = progressbar;
+        let seekbar = seek.value;
+        bar2.style.width = `${seekbar}%`;
+        dot.style.left = `${seekbar}%`;
+    }
+})
+
+// Use 'input' event for real-time seeking while dragging
+seek.addEventListener('input', ()=>{
+    music.currentTime = seek.value * music.duration/100;
+    // Update visual bar while dragging
     let seekbar = seek.value;
     bar2.style.width = `${seekbar}%`;
     dot.style.left = `${seekbar}%`;
 })
 
+// Also support 'change' event for clicking directly on the bar
 seek.addEventListener('change', ()=>{
     music.currentTime = seek.value * music.duration/100;
 })
@@ -400,24 +425,28 @@ back.addEventListener('click', ()=>{
     if (index < 1) {
         index = Array.from(document.getElementsByClassName('songItem')).length;
     }
-    music.src = `audio/${index}.mp3`;
-    poster_master_play.src =`img/${index}.jpg`;
-    music.play();
-    let song_title = songs.filter((ele)=>{
+    currentSongIndex = index; // Update current song index for lyrics/meanings
+
+    // Get the song info including audio file
+    let song_info = songs.filter((ele)=>{
         return ele.id == index;
     })
 
-    song_title.forEach(ele =>{
-        let {songName} = ele;
+    if (song_info.length > 0) {
+        let {songName, poster, audioFile} = song_info[0];
+        music.src = `audio/${audioFile}`;
+        poster_master_play.src = poster;
         title.innerHTML = songName;
-    })
+    }
+
+    music.play();
     makeAllPlays()
 
     document.getElementById(`${index}`).classList.remove('bi-play-fill');
     document.getElementById(`${index}`).classList.add('bi-pause-fill');
     makeAllBackgrounds();
     Array.from(document.getElementsByClassName('songItem'))[`${index-1}`].style.background = "rgb(105, 105, 170, .1)";
-    
+
 })
 next.addEventListener('click', ()=>{
     index -= 0;
@@ -425,36 +454,87 @@ next.addEventListener('click', ()=>{
     if (index > Array.from(document.getElementsByClassName('songItem')).length) {
         index = 1;
         }
-    music.src = `audio/${index}.mp3`;
-    poster_master_play.src =`img/${index}.jpg`;
-    music.play();
-    let song_title = songs.filter((ele)=>{
+    currentSongIndex = index; // Update current song index for lyrics/meanings
+
+    // Get the song info including audio file
+    let song_info = songs.filter((ele)=>{
         return ele.id == index;
     })
 
-    song_title.forEach(ele =>{
-        let {songName} = ele;
+    if (song_info.length > 0) {
+        let {songName, poster, audioFile} = song_info[0];
+        music.src = `audio/${audioFile}`;
+        poster_master_play.src = poster;
         title.innerHTML = songName;
-    })
+    }
+
+    music.play();
     makeAllPlays()
 
     document.getElementById(`${index}`).classList.remove('bi-play-fill');
     document.getElementById(`${index}`).classList.add('bi-pause-fill');
     makeAllBackgrounds();
     Array.from(document.getElementsByClassName('songItem'))[`${index-1}`].style.background = "rgb(105, 105, 170, .1)";
-    
+
 })
 
 
-let left_scroll = document.getElementById('left_scroll');
-let right_scroll = document.getElementById('right_scroll');
-let pop_song = document.getElementsByClassName('pop_song')[0];
+// Scroll functionality for all three sections with endless scrolling
+let left_scroll_1 = document.getElementById('left_scroll_1');
+let right_scroll_1 = document.getElementById('right_scroll_1');
+let pop_song_1 = document.getElementById('pop_song_1');
 
-left_scroll.addEventListener('click', ()=>{
-    pop_song.scrollLeft -= 330;
+left_scroll_1.addEventListener('click', ()=>{
+    pop_song_1.scrollLeft -= 330;
+    // Endless scroll - if at beginning, jump to end
+    if (pop_song_1.scrollLeft <= 0) {
+        pop_song_1.scrollLeft = pop_song_1.scrollWidth - pop_song_1.clientWidth;
+    }
 })
-right_scroll.addEventListener('click', ()=>{
-    pop_song.scrollLeft += 330;
+right_scroll_1.addEventListener('click', ()=>{
+    pop_song_1.scrollLeft += 330;
+    // Endless scroll - if at end, jump to beginning
+    if (pop_song_1.scrollLeft >= pop_song_1.scrollWidth - pop_song_1.clientWidth) {
+        pop_song_1.scrollLeft = 0;
+    }
+})
+
+let left_scroll_2 = document.getElementById('left_scroll_2');
+let right_scroll_2 = document.getElementById('right_scroll_2');
+let pop_song_2 = document.getElementById('pop_song_2');
+
+left_scroll_2.addEventListener('click', ()=>{
+    pop_song_2.scrollLeft -= 330;
+    // Endless scroll - if at beginning, jump to end
+    if (pop_song_2.scrollLeft <= 0) {
+        pop_song_2.scrollLeft = pop_song_2.scrollWidth - pop_song_2.clientWidth;
+    }
+})
+right_scroll_2.addEventListener('click', ()=>{
+    pop_song_2.scrollLeft += 330;
+    // Endless scroll - if at end, jump to beginning
+    if (pop_song_2.scrollLeft >= pop_song_2.scrollWidth - pop_song_2.clientWidth) {
+        pop_song_2.scrollLeft = 0;
+    }
+})
+
+let left_scroll_3 = document.getElementById('left_scroll_3');
+let right_scroll_3 = document.getElementById('right_scroll_3');
+let pop_song_3 = document.getElementById('pop_song_3');
+
+left_scroll_3.addEventListener('click', ()=>{
+    pop_song_3.scrollLeft -= 330;
+    // Endless scroll - if at beginning, jump to end
+    if (pop_song_3.scrollLeft <= 0) {
+        pop_song_3.scrollLeft = pop_song_3.scrollWidth - pop_song_3.clientWidth;
+    }
+})
+right_scroll_3.addEventListener('click', ()=>{
+    pop_song_3.scrollLeft += 330;
+    // Endless scroll - if at end, jump to beginning
+    if (pop_song_3.scrollLeft >= pop_song_3.scrollWidth - pop_song_3.clientWidth) {
+        pop_song_3.scrollLeft = 0;
+    }
 })
 
 
@@ -462,9 +542,36 @@ let left_scrolls = document.getElementById('left_scrolls');
 let right_scrolls = document.getElementById('right_scrolls');
 let item = document.getElementsByClassName('item')[0];
 
-left_scrolls.addEventListener('click', ()=>{
-    item.scrollLeft -= 330;
-})
-right_scrolls.addEventListener('click', ()=>{
-    item.scrollLeft += 330;
-})
+if (left_scrolls && right_scrolls && item) {
+    left_scrolls.addEventListener('click', ()=>{
+        item.scrollLeft -= 330;
+    })
+    right_scrolls.addEventListener('click', ()=>{
+        item.scrollLeft += 330;
+    })
+}
+
+// Tab switching functionality
+document.getElementById('musicTab').addEventListener('click', function() {
+    // Show music content, hide about me
+    document.getElementById('musicContent').style.display = 'block';
+    document.getElementById('aboutMeContent').style.display = 'none';
+
+    // Update tab styling
+    this.style.color = '#AF5EFF';
+    this.style.borderBottom = '3px solid #AF5EFF';
+    document.getElementById('aboutTab').style.color = '';
+    document.getElementById('aboutTab').style.borderBottom = '';
+});
+
+document.getElementById('aboutTab').addEventListener('click', function() {
+    // Show about me content, hide music
+    document.getElementById('musicContent').style.display = 'none';
+    document.getElementById('aboutMeContent').style.display = 'block';
+
+    // Update tab styling
+    this.style.color = '#AF5EFF';
+    this.style.borderBottom = '3px solid #AF5EFF';
+    document.getElementById('musicTab').style.color = '';
+    document.getElementById('musicTab').style.borderBottom = '';
+});
