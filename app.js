@@ -67,9 +67,12 @@ const collections = {
 };
 
 // Flatten songs into a single array for backwards compatibility with existing code
+// Process in the order they appear in the HTML: alice-in-love, 3am, antisocial-social-club
 const songs = [];
 let songId = 1;
-for (const [collectionSlug, collection] of Object.entries(collections)) {
+const collectionOrder = ['alice-in-love', '3am', 'antisocial-social-club'];
+for (const collectionSlug of collectionOrder) {
+    const collection = collections[collectionSlug];
     for (const song of collection.songs) {
         songs.push({
             id: String(songId++),
