@@ -61,6 +61,7 @@ const collections = {
             { slug: "last-words", title: "LAST WORDS", subtitle: "3AM", audioFile: "last-words.mp3" },
             { slug: "missing-girl", title: "MISSING GIRL", subtitle: "3AM", audioFile: "missing-girl.mp3" },
             { slug: "ozone", title: "OZONE", subtitle: "3AM [Chase Atlantic]", audioFile: "ozone.mp3" },
+            {slug: "pearl", title: "PEARL", subtitle: "3AM", audioFile: "pearl.mp3"},
             { slug: "i-know", title: "I KNOW", subtitle: "3AM", audioFile: "i-know.mp3" }
         ]
     }
